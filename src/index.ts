@@ -402,7 +402,7 @@ export default function killTheNewsletter(
           (entry) => html`
             <entry>
               <id>urn:kill-the-newsletter:${entry.reference}</id>
-              <title>${entry.title}</title>
+              <title>${entry.author} / ${entry.title}</title>
               <author><name>${entry.author}</name></author>
               <updated>${new Date(entry.createdAt).toISOString()}</updated>
               <link

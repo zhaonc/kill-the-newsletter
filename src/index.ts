@@ -373,6 +373,7 @@ export default function killTheNewsletter(
         FROM "entries"
         WHERE "feed" = ${feed.id}
         ORDER BY "id" DESC
+        LIMIT 20
       `
     );
 
@@ -495,10 +496,10 @@ export default function killTheNewsletter(
             database.run(
               sql`UPDATE "feeds" SET "updatedAt" = CURRENT_TIMESTAMP WHERE "id" = ${feed.id}`
             );
-            while (renderFeed(feedReference)!.length > 500_000)
-              database.run(
-                sql`DELETE FROM "entries" WHERE "feed" = ${feed.id} ORDER BY "id" ASC LIMIT 1`
-              );
+            // while (renderFeed(feedReference)!.length > 500_000)
+            //   database.run(
+            //     sql`DELETE FROM "entries" WHERE "feed" = ${feed.id} ORDER BY "id" ASC LIMIT 1`
+            //   );
           }
         });
         callback();
